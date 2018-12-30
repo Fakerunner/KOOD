@@ -1,91 +1,93 @@
 #include <stdio.h>
 #include <stdlib.h>
-    int  i ,j ,e, f, g;
-
+#include <conio.h>
+int  i ,j ,e, f, g, a, b, d, c;
+void stworz_tablice (void);
+void drukuj_tablice (void);
+void zmien_tablice (void);
+void co_teraz (void);
 struct daneos
 {
     int wartosc;
     int wyglad;
 };
+struct daneos pole[100][100];
 
-void wyswietl_tablice (struct daneos pole[i][j])
+int main()
 {
-    int a=10,b=10,i,j;
+    printf ("Podaj szerokosc");
+    scanf ("%d", &b);
+    printf ("Podaj dlugosc");
+    scanf ("%d", &a);
+    stworz_tablice();
+    drukuj_tablice();
+    for (c=0; ;c++)
+    {
+        co_teraz();
+        zmien_tablice();
+        drukuj_tablice();
+    }
+    return 0;
+}
+
+void stworz_tablice(void)
+{
+    for (i=0;i<a;i++)
+    {
+        for (j=0;j<b;j++)
+        {
+            pole[i][j].wyglad='X';
+            pole[i][j].wartosc=5;
+        }
+    }
+}
+
+void drukuj_tablice(void)
+{
     for (i=0;i<a;i++)
     {
         printf("\n");
         for (j=0;j<b;j++)
         {
-            if (i>5&&i<10)
-            {
-                pole[i][j].wyglad='X';
-                pole[i][j].wartosc=10;
-            }
-            else
-            {
-                pole[i][j].wyglad='X';
-                pole[i][j].wartosc=5;
-            }
             printf ("%c ", pole[i][j].wyglad);
         }
     }
     printf ("\n");
 }
 
-void zmien_tablice (struct daneos pole[i][j])
+void zmien_tablice (void)
 {
-    int a=10,b=10,i=0,j=0;
-    scanf ("%d",&e);
-    scanf ("%d",&f);
-    printf ("SSSSSSSS");
-    for (i=0;i<a;i++)
-    {
-        printf("\n");
-        for (j=0;j<b;j++)
-        {
-            if (i>5&&i<10)
-            {
-                pole[i][j].wyglad='G';
-                pole[i][j].wartosc=10;
-            }
-            else
-            {
-                pole[i][j].wyglad='X';
-                pole[i][j].wartosc=5;
-            }
-           // if (i==e&&j==f)
-           // {
-           //     printf ("M ");
-           // }
-           // else
-           // {
-            printf ("%c ", pole[i][j].wyglad);
-           // }
-        }
-    }
+    system("cls");
+    pole[4][8].wyglad='G';
 }
 
-int main(void)
+void co_teraz(void)
 {
-    struct daneos pole[i][j];
-    wyswietl_tablice(pole);
-    wyswietl_tablice(pole);
-    printf ("Co dalej?");
-    scanf ("%d",&e);
-    switch (e)
+    printf ("Podaj parametry oddzielone znakiem enter \n Szerokosc:");
+    scanf ("%d", &i);
+    printf ("Dlugosc:");
+    scanf ("%d", &j);
+    printf ("Co chcesz zrobic?\n1 - odkryc\n2 - oznaczyc jako bombe\n3 - powrot");
+    scanf ("%d", d);
+    switch (d)
     {
         case 1:
-            system("cls");
-            wyswietl_tablice(pole);
-            //zmien_tablice(pole);
+            if (pole[i][j].wartosc==5)
+                printf ("Przegrales");
         break;
         case 2:
-            system("cls");
-            printf ("XDDD");
-        default:
+            pole[i][j].wyglad='B';
+            for (i=0;i<a;i++)
+            {
+                printf("\n");
+                for (j=0;j<b;j++)
+                {
+                    printf ("%c ", pole[i][j].wyglad);
+                }
+            }
+    printf ("\n");
+        break;
+        case 3:
         break;
     }
-
-
-    return 0;
 }
